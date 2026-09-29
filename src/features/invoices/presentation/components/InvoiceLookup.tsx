@@ -31,7 +31,7 @@ export default function InvoiceLookup({
           />
         )}
         <input
-          aria-label="Buscar factura por ID"
+          aria-label="Buscar factura por identificador"
           aria-describedby={lookupError ? 'invoice-search-error' : undefined}
           aria-busy={lookupBusy}
           required
@@ -41,7 +41,7 @@ export default function InvoiceLookup({
           value={lookup}
           readOnly={lookupBusy}
           onChange={(event) => setLookup(event.target.value)}
-          placeholder="Buscar factura por ID…"
+          placeholder="Buscar factura por identificador…"
           className="w-full rounded-xl border border-neutral-800 bg-neutral-950 py-3 pr-4 pl-11 text-sm text-neutral-100 outline-none focus:border-neutral-500"
         />
       </div>

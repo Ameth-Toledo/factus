@@ -14,11 +14,11 @@ export default function InvoicePayments({
       <h2 className="mb-5 text-sm font-semibold text-neutral-100">Pagos</h2>
       {draft.payment_details.map((payment, index) => (
         <div
-          className="mb-4 grid items-end gap-3 rounded-xl border border-neutral-800/70 bg-black/30 p-4 sm:grid-cols-2"
+          className="mb-5 grid items-end gap-3 [&+div]:border-t [&+div]:border-neutral-800 [&+div]:pt-5 sm:grid-cols-2"
           key={index}
         >
           <label>
-            Forma
+            Forma de pago
             <select
               value={payment.payment_form}
               onChange={(e) =>
@@ -35,7 +35,7 @@ export default function InvoicePayments({
             </select>
           </label>
           <label>
-            Medio de pago (código)
+            Código del medio de pago
             <input
               required
               placeholder="10: efectivo · 42: consignación"

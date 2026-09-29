@@ -2,6 +2,7 @@ import { ArrowUpRight, ReceiptText } from 'lucide-react'
 import { safeLink } from '../../../../shared/browser/safeLink'
 import type { Session } from '../../../auth/domain/models/Session'
 import type { Invoice } from '../../domain/models/Invoice'
+import { invoiceTotalLabels } from '../config/invoiceTotalLabels'
 import InvoiceDownloads from './InvoiceDownloads'
 import InvoiceStatusBadge from './InvoiceStatusBadge'
 
@@ -33,13 +34,15 @@ export default function Result({
       )}
       <dl className="grid gap-4 text-sm sm:grid-cols-2">
         <div>
-          <dt className="text-xs text-neutral-500">Referencia local</dt>
+          <dt className="text-xs text-neutral-500">Referencia de la venta</dt>
           <dd className="mt-1 break-all text-neutral-200">
             {invoice.reference_code}
           </dd>
         </div>
         <div>
-          <dt className="text-xs text-neutral-500">Referencia en Factus</dt>
+          <dt className="text-xs text-neutral-500">
+            Referencia de facturación
+          </dt>
           <dd className="mt-1 break-all text-neutral-200">
             {invoice.factus_reference || '—'}
           </dd>
@@ -51,7 +54,9 @@ export default function Result({
           </dd>
         </div>
         <div className="sm:col-span-2">
-          <dt className="text-xs text-neutral-500">CUFE</dt>
+          <dt className="text-xs text-neutral-500">
+            Código único de factura (CUFE)
+          </dt>
           <dd className="mt-1 break-all font-mono text-xs leading-6 text-neutral-400">
             {invoice.cufe || 'Pendiente'}
           </dd>
@@ -64,7 +69,7 @@ export default function Result({
           rel="noreferrer"
           className="inline-flex items-center gap-2 text-sm text-neutral-300 hover:text-white"
         >
-          Abrir factura en Factus
+          Ver factura en línea
           <ArrowUpRight className="size-4" aria-hidden="true" />
         </a>
       )}
@@ -73,7 +78,9 @@ export default function Result({
           {Object.entries(invoice.factus_response.data.totals).map(
             ([key, value]) => (
               <div key={key}>
-                <dt className="text-xs text-neutral-500">{key}</dt>
+                <dt className="text-xs text-neutral-500">
+                  {invoiceTotalLabels[key] ?? 'Otro importe'}
+                </dt>
                 <dd className="mt-1 font-medium text-neutral-100 tabular-nums">
                   {value}
                 </dd>

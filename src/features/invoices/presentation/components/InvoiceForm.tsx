@@ -45,7 +45,10 @@ export default function InvoiceForm({
           className="min-w-0 space-y-6 disabled:opacity-60"
           disabled={busy || !!submitted || loading || !!loadError}
         >
-          <div className="rounded-2xl border border-neutral-800 bg-[#0A0A0A] p-5 sm:p-6">
+          <div
+            data-tour="sale-customer"
+            className="rounded-2xl border border-neutral-800 bg-[#0A0A0A] p-5 sm:p-6"
+          >
             <h2 className="mb-5 text-sm font-semibold text-neutral-100">
               Cliente y datos de venta
             </h2>
@@ -56,10 +59,16 @@ export default function InvoiceForm({
               ranges={ranges}
             />
           </div>
-          <div className="rounded-2xl border border-neutral-800 bg-[#0A0A0A] p-5 sm:p-6">
+          <div
+            data-tour="sale-products"
+            className="rounded-2xl border border-neutral-800 bg-[#0A0A0A] p-5 sm:p-6"
+          >
             <InvoiceItems draft={draft} patch={patch} products={products} />
           </div>
-          <div className="rounded-2xl border border-neutral-800 bg-[#0A0A0A] p-5 sm:p-6">
+          <div
+            data-tour="sale-payments"
+            className="rounded-2xl border border-neutral-800 bg-[#0A0A0A] p-5 sm:p-6"
+          >
             <InvoicePayments
               draft={draft}
               patch={patch}
@@ -67,7 +76,10 @@ export default function InvoiceForm({
             />
           </div>
         </fieldset>
-        <aside className="space-y-5 rounded-2xl border border-neutral-800 bg-[#0A0A0A] p-6 xl:sticky xl:top-8">
+        <aside
+          data-tour="sale-summary"
+          className="space-y-5 rounded-2xl border border-neutral-800 bg-[#0A0A0A] p-6 xl:sticky xl:top-8"
+        >
           <h2 className="text-sm font-semibold text-neutral-100">
             Resumen de venta
           </h2>
@@ -116,7 +128,7 @@ export default function InvoiceForm({
             {busy
               ? 'Esperando validación…'
               : submitted
-                ? 'Consultar mismo envío'
+                ? 'Revisar resultado de la venta'
                 : 'Crear y validar factura'}
           </button>
           {result && ['validated', 'rejected'].includes(result.status) && (

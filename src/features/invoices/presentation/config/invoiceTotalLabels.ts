@@ -1,0 +1,18 @@
+export const invoiceTotalLabels: Record<string, string> = {
+  tax_amount: 'Impuestos',
+  taxable_amount: 'Base gravable',
+  prepayment_amount: 'Anticipos',
+  gross_amount: 'Importe bruto',
+  surcharge_amount: 'Recargos',
+  discount_amount: 'Descuentos',
+  allowance_amount: 'Descuentos',
+  charge_amount: 'Cargos adicionales',
+  tax_exclusive_amount: 'Total sin impuestos',
+  tax_inclusive_amount: 'Total con impuestos',
+  payable_amount: 'Total por pagar',
+  line_extension_amount: 'Importe de los productos',
+  cash_rounding_amount: 'Ajuste de redondeo',
+  rounding_amount: 'Ajuste de redondeo',
+  total: 'Total',
+  subtotal: 'Subtotal',
+}

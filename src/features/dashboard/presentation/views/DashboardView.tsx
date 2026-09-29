@@ -35,9 +35,6 @@ export default function DashboardView({ session }: { session: Session }) {
         loading={loading}
         unavailable={!!error && !summary}
       />
-      <p className="pb-2 text-center text-[11px] text-neutral-400">
-        Un espacio para administrar, facturar y seguir creciendo.
-      </p>
     </div>
   )
 }

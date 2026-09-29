@@ -39,10 +39,10 @@ export default function SaleForm({
             role="status"
             className="rounded-xl border border-neutral-700 bg-neutral-900 p-4"
           >
-            Envío guardado con referencia{' '}
-            <strong>{model.submitted.reference_code}</strong>. Consultar el
-            mismo envío conserva sus datos y evita duplicarlo. Si queda
-            pendiente o sin confirmar, requiere revisión en Factus.
+            Venta guardada con referencia{' '}
+            <strong>{model.submitted.reference_code}</strong>. Revisa el
+            resultado antes de crear otra venta. Si aún está pendiente o sin
+            confirmar, verifica su estado con tu proveedor de facturación.
           </p>
         )}
         {model.error && (

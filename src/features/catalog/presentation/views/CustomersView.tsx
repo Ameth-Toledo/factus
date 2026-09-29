@@ -15,7 +15,11 @@ export default function CustomersView({ session }: { session: Session }) {
         title="Clientes"
         description="Consulta y administra los datos de quienes confían en tu negocio."
         action={
-          <ActionButton onClick={model.openCreate} disabled={model.busy}>
+          <ActionButton
+            data-tour="create-customer"
+            onClick={model.openCreate}
+            disabled={model.busy}
+          >
             <Plus className="size-4" aria-hidden="true" />
             Agregar cliente
           </ActionButton>

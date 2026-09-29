@@ -7,8 +7,12 @@ export const customerFields: Field[] = [
     required: true,
     initial: '13',
   },
-  { key: 'identification', label: 'Identificación sin DV', required: true },
-  { key: 'dv', label: 'DV (solo NIT)' },
+  {
+    key: 'identification',
+    label: 'Número de identificación (sin dígito de verificación)',
+    required: true,
+  },
+  { key: 'dv', label: 'Dígito de verificación (solo para NIT)' },
   {
     key: 'legal_organization_code',
     label: 'Tipo de persona',
@@ -21,18 +25,26 @@ export const customerFields: Field[] = [
   { key: 'names', label: 'Nombre completo (persona natural)' },
   { key: 'company', label: 'Razón social (persona jurídica)' },
   { key: 'trade_name', label: 'Nombre comercial' },
-  { key: 'email', label: 'Correo', type: 'email' },
+  { key: 'email', label: 'Correo electrónico', type: 'email' },
   { key: 'address', label: 'Dirección' },
   { key: 'phone', label: 'Teléfono' },
-  { key: 'country_code', label: 'País', initial: 'CO' },
+  {
+    key: 'country_code',
+    label: 'Código del país (ej. CO para Colombia)',
+    initial: 'CO',
+  },
   {
     key: 'municipality_code',
-    label: 'Código municipio colombiano (ej. 68679)',
+    label: 'Código del municipio (ej. 68679)',
   },
-  { key: 'tribute_code', label: 'Tributo', initial: 'ZZ' },
+  {
+    key: 'tribute_code',
+    label: 'Código del impuesto del cliente',
+    initial: 'ZZ',
+  },
   {
     key: 'responsibilities',
-    label: 'Responsabilidades separadas por coma',
+    label: 'Responsabilidades fiscales (códigos separados por coma)',
     initial: 'R-99-PN',
   },
 ]

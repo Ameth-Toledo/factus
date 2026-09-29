@@ -3,7 +3,6 @@ import type { Session } from '../../domain/models/Session'
 import { useAuthViewModel } from '../viewmodel/useAuthViewModel'
 import AuthBrandPanel from '../components/AuthBrandPanel'
 import AuthForm from '../components/AuthForm'
-import Brand from '../../../../shared/components/ui/Brand'
 
 export default function Auth({
   onLogin,
@@ -16,11 +15,8 @@ export default function Auth({
   return (
     <main className="grid min-h-screen bg-black font-sans text-neutral-100 selection:bg-neutral-500/30 lg:grid-cols-2">
       <AuthBrandPanel />
-      <section className="flex min-h-screen flex-col px-6 py-8 sm:px-12 lg:px-16">
-        <div className="text-neutral-50 lg:hidden">
-          <Brand />
-        </div>
-        <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center py-12">
+      <section className="flex flex-col px-6 py-8 sm:px-12 lg:min-h-screen lg:px-16">
+        <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center py-6 lg:py-12">
           <p className="text-[10px] font-bold tracking-[0.2em] text-neutral-400">
             BIENVENIDO A FACTUS
           </p>
@@ -64,7 +60,18 @@ export default function Auth({
           />
         </div>
         <p className="text-center text-[11px] text-neutral-400">
-          Tu próximo paso comienza aquí.
+          Factus · Facturación electrónica
+          <span className="mx-2" aria-hidden="true">
+            ·
+          </span>
+          <a
+            href="https://www.amethdev.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-neutral-300 transition hover:text-white"
+          >
+            Dev Ameth Toledo
+          </a>
         </p>
       </section>
     </main>

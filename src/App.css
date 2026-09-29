@@ -3,3 +3,49 @@
 @theme {
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 }
+
+.driver-popover.factus-guide {
+  @apply rounded-2xl border border-neutral-700 bg-neutral-950 p-5 text-neutral-100 shadow-2xl;
+  font-family: var(--font-sans);
+}
+
+.factus-guide .driver-popover-title {
+  @apply text-base font-semibold;
+}
+
+.factus-guide .driver-popover-description {
+  @apply text-sm leading-6 text-neutral-300;
+}
+
+.factus-guide .driver-popover-progress-text {
+  @apply text-xs text-neutral-400;
+}
+
+.factus-guide .driver-popover-footer button {
+  @apply rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-2 text-xs text-neutral-100;
+  text-shadow: none;
+}
+
+.factus-guide .driver-popover-footer .driver-popover-next-btn {
+  @apply bg-white text-black;
+}
+
+.factus-guide .driver-popover-close-btn {
+  @apply text-neutral-400;
+}
+
+.factus-guide .driver-popover-arrow {
+  @apply hidden;
+}
+
+.factus-guide .driver-popover-footer {
+  @apply flex flex-col items-stretch gap-3;
+}
+
+.factus-guide .driver-popover-progress-text {
+  @apply whitespace-nowrap;
+}
+
+.factus-guide .driver-popover-navigation-btns {
+  @apply flex justify-end gap-2;
+}

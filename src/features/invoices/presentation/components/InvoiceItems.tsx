@@ -14,7 +14,7 @@ export default function InvoiceItems({
       <h2 className="mb-5 text-sm font-semibold text-neutral-100">Productos</h2>
       {draft.items.map((item, index) => (
         <div
-          className="mb-4 grid items-end gap-3 rounded-xl border border-neutral-800/70 bg-black/30 p-4 sm:grid-cols-[minmax(0,1fr)_90px_100px_36px]"
+          className="mb-5 grid items-end gap-3 [&+div]:border-t [&+div]:border-neutral-800 [&+div]:pt-5 sm:grid-cols-[minmax(0,1fr)_90px_100px_36px]"
           key={index}
         >
           <label>

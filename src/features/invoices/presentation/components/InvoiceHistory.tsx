@@ -21,6 +21,7 @@ export default function InvoiceHistory({
 
   return (
     <section
+      data-tour="invoice-history"
       aria-label="Historial de facturas"
       className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950"
     >

@@ -1,3 +1,4 @@
+import GettingStartedGuide from '../../../features/onboarding/presentation/components/GettingStartedGuide'
 import { Outlet } from 'react-router-dom'
 import type { Session } from '../../../features/auth/domain/models/Session'
 import AppSidebar from './AppSidebar'
@@ -27,6 +28,7 @@ export default function DashboardLayout({
           <Outlet />
         </main>
       </div>
+      <GettingStartedGuide userId={session.user.id} />
       <MobileNavigation onLogout={onLogout} />
     </div>
   )

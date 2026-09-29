@@ -14,7 +14,7 @@ export default function AuthForm({
   return (
     <form
       onSubmit={submit}
-      className="rounded-2xl border border-neutral-800 bg-neutral-950 p-5 sm:p-6"
+      className="w-full"
     >
       <fieldset disabled={busy} className="space-y-5">
         {register && (

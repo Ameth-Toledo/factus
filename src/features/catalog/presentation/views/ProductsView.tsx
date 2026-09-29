@@ -15,7 +15,11 @@ export default function ProductsView({ session }: { session: Session }) {
         title="Productos y servicios"
         description="Consulta y administra los productos de tu catálogo."
         action={
-          <ActionButton onClick={model.openCreate} disabled={model.busy}>
+          <ActionButton
+            data-tour="create-product"
+            onClick={model.openCreate}
+            disabled={model.busy}
+          >
             <Plus className="size-4" aria-hidden="true" />
             Agregar producto
           </ActionButton>

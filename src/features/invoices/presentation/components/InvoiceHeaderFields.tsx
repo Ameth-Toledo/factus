@@ -28,7 +28,7 @@ export default function InvoiceHeaderFields({
           </select>
         </label>
         <label>
-          Rango de numeración
+          Numeración de la factura
           <select
             required
             value={draft.numbering_range_id || ''}
@@ -39,7 +39,7 @@ export default function InvoiceHeaderFields({
             <option value="">Seleccionar</option>
             {ranges.map((r) => (
               <option value={r.id} key={r.id}>
-                {r.prefix} / {r.id} — vence {r.end_date}
+                {r.prefix} / {r.id} — válido hasta {r.end_date}
               </option>
             ))}
           </select>

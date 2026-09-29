@@ -1,7 +1,7 @@
 import type { Field } from '../models/Field'
 
 export const productFields: Field[] = [
-  { key: 'code_reference', label: 'Código', required: true },
+  { key: 'code_reference', label: 'Código del producto', required: true },
   { key: 'name', label: 'Nombre', required: true },
   {
     key: 'price',
@@ -11,13 +11,13 @@ export const productFields: Field[] = [
   },
   {
     key: 'unit_measure_code',
-    label: 'Código unidad de medida',
+    label: 'Código de la unidad de medida',
     required: true,
     initial: '94',
   },
   {
     key: 'standard_code',
-    label: 'Estándar de producto',
+    label: 'Código de clasificación del producto',
     required: true,
     initial: '999',
   },

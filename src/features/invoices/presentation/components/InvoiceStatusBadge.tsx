@@ -17,7 +17,7 @@ const statuses: Record<string, { label: string; className: string }> = {
 
 export default function InvoiceStatusBadge({ status }: { status: string }) {
   const presentation = statuses[status] ?? {
-    label: status,
+    label: 'Estado por confirmar',
     className: 'bg-neutral-800 text-neutral-300',
   }
 

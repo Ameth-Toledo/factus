@@ -32,12 +32,12 @@ export async function api<T>(
       throw new ApiError(
         data?.error ||
           data?.message ||
-          `La API respondió ${response.status}. Comprueba que el servidor Go esté iniciado.`,
+          'No pudimos completar la operación. Inténtalo de nuevo más tarde.',
         response.status,
       )
     if (data === null)
       throw new Error(
-        'La API no devolvió JSON. Comprueba el servidor Go y el proxy.',
+        'No pudimos interpretar la respuesta del servicio. Inténtalo de nuevo más tarde.',
       )
     return data as T
   } catch (error) {
@@ -46,7 +46,7 @@ export async function api<T>(
       (error instanceof DOMException && error.name === 'AbortError')
     )
       throw new Error(
-        'No se recibió respuesta de la API. Si estabas facturando, conserva la referencia y consulta el mismo envío antes de crear otro.',
+        'No se recibió respuesta del servicio. Si estabas realizando una venta, conserva su referencia y revisa el resultado antes de crear otra.',
         { cause: error },
       )
     throw error
