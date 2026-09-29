@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://factus-api.onrender.com/:path*"
+      "destination": "https://factus-api-a3of.onrender.com/:path*"
     },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
