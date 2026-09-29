@@ -43,13 +43,21 @@ export function useInvoiceHistoryViewModel(
       active = false
     }
   }, [session, offset, revision, refreshKey, repository])
-  const labels: Record<string, string> = {
-    validated: 'Validada',
-    not_validated: 'Sin validar',
-    rejected: 'Rechazada',
-    pending: 'Pendiente',
-    unknown: 'Sin confirmar',
+  function refresh() {
+    setLoading(true)
+    setRevision((value) => value + 1)
   }
+
+  function previousPage() {
+    setLoading(true)
+    setOffset(offset - 20)
+  }
+
+  function nextPage() {
+    setLoading(true)
+    setOffset(offset + 20)
+  }
+
   return {
     rows,
     offset,
@@ -58,6 +66,8 @@ export function useInvoiceHistoryViewModel(
     loading,
     setLoading,
     error,
-    labels,
+    refresh,
+    previousPage,
+    nextPage,
   }
 }

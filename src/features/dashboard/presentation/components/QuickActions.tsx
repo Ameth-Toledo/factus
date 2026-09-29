@@ -15,8 +15,8 @@ const actions = [
     icon: PackagePlus,
   },
   {
-    to: '/invoices',
-    label: 'Crear una factura',
+    to: '/sales/new',
+    label: 'Realizar venta',
     detail: 'De la venta a la validación',
     icon: FilePlus2,
   },

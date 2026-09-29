@@ -20,12 +20,12 @@ export default function Auth({
         <div className="text-neutral-50 lg:hidden">
           <Brand />
         </div>
-        <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center py-12">
+        <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center py-12">
           <p className="text-[10px] font-bold tracking-[0.2em] text-neutral-400">
             BIENVENIDO A FACTUS
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-neutral-50">
-            {register ? 'Empieza algo grande.' : 'Qué bueno verte.'}
+            {register ? 'Crear cuenta' : 'Iniciar sesión'}
           </h1>
           <p className="mt-3 mb-8 text-sm leading-6 text-neutral-400">
             {register

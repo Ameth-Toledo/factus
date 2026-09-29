@@ -42,7 +42,6 @@ export function useCatalogEditorViewModel(
     setEditing(row)
     setFormVersion((value) => value + 1)
     if ('taxes' in row) setTaxes(row.taxes.map((tax) => ({ ...tax })))
-    if (kind === 'customers') window.scrollTo({ top: 0 })
   }
 
   async function submit(event: FormEvent<HTMLFormElement>) {

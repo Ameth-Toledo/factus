@@ -1,23 +1,23 @@
-import PageHeading from '../../../../shared/components/ui/PageHeading'
-import ActionButton from '../../../../shared/components/ui/ActionButton'
 import { Plus } from 'lucide-react'
 import type { Session } from '../../../auth/domain/models/Session'
-import { useProductsViewModel } from '../viewmodel/useProductsViewModel'
-import ProductsTable from '../components/ProductsTable'
-import ProductFormModal from '../components/ProductFormModal'
+import PageHeading from '../../../../shared/components/ui/PageHeading'
+import ActionButton from '../../../../shared/components/ui/ActionButton'
+import { useCustomersViewModel } from '../viewmodel/useCustomersViewModel'
+import CustomersTable from '../components/CustomersTable'
+import CustomerFormModal from '../components/CustomerFormModal'
 
-export default function ProductsView({ session }: { session: Session }) {
-  const model = useProductsViewModel(session)
+export default function CustomersView({ session }: { session: Session }) {
+  const model = useCustomersViewModel(session)
 
   return (
     <section>
       <PageHeading
-        title="Productos y servicios"
-        description="Consulta y administra los productos de tu catálogo."
+        title="Clientes"
+        description="Consulta y administra los datos de quienes confían en tu negocio."
         action={
           <ActionButton onClick={model.openCreate} disabled={model.busy}>
             <Plus className="size-4" aria-hidden="true" />
-            Agregar producto
+            Agregar cliente
           </ActionButton>
         }
       />
@@ -34,8 +34,8 @@ export default function ProductsView({ session }: { session: Session }) {
           {model.notice}
         </p>
       )}
-      <ProductsTable
-        products={model.products}
+      <CustomersTable
+        customers={model.customers}
         busy={model.busy}
         loading={model.loading}
         offset={model.offset}
@@ -48,7 +48,7 @@ export default function ProductsView({ session }: { session: Session }) {
         remove={model.remove}
       />
       {model.isModalOpen && (
-        <ProductFormModal
+        <CustomerFormModal
           editing={model.editing}
           busy={model.busy}
           error={model.error}
@@ -58,7 +58,7 @@ export default function ProductsView({ session }: { session: Session }) {
           setTaxes={model.setTaxes}
           reset={model.reset}
           closeModal={model.closeModal}
-          submitProduct={model.submitProduct}
+          submitForm={model.submitForm}
         />
       )}
     </section>

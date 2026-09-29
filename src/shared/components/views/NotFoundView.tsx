@@ -1,24 +1,35 @@
 import { ArrowLeft, FileQuestion } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import PageHeading from '../ui/PageHeading'
 
 export default function NotFoundView() {
   return (
-    <section className="rounded-2xl border border-neutral-700 bg-neutral-950 px-6 py-20 text-center">
-      <FileQuestion
-        className="mx-auto mb-5 size-12 text-neutral-400"
-        aria-hidden="true"
+    <section>
+      <PageHeading
+        title="Página no encontrada"
+        description="La dirección que buscas no está disponible en este espacio."
       />
-      <h1 className="text-2xl font-bold">No encontramos esta página</h1>
-      <p className="mt-3 text-neutral-400">
-        Puedes regresar al inicio para continuar.
-      </p>
-      <Link
-        to="/dashboard"
-        className="mt-7 inline-flex items-center gap-2 rounded-xl bg-neutral-700 px-5 py-3 text-sm font-medium text-white"
-      >
-        <ArrowLeft className="size-4" aria-hidden="true" />
-        Volver al dashboard
-      </Link>
+      <div className="rounded-2xl border border-neutral-800 bg-neutral-950 px-6 py-20 text-center">
+        <span className="mx-auto flex size-16 items-center justify-center rounded-2xl border border-neutral-800 bg-neutral-900">
+          <FileQuestion
+            className="size-7 text-neutral-500"
+            aria-hidden="true"
+          />
+        </span>
+        <h2 className="mt-5 text-lg font-semibold text-neutral-200">
+          Volvamos al inicio
+        </h2>
+        <p className="mt-2 text-sm text-neutral-500">
+          Desde el dashboard puedes acceder a todas las secciones.
+        </p>
+        <Link
+          to="/dashboard"
+          className="mt-7 inline-flex items-center gap-2 rounded-xl bg-neutral-100 px-5 py-3 text-sm font-semibold text-black hover:bg-white"
+        >
+          <ArrowLeft className="size-4" aria-hidden="true" />
+          Volver al dashboard
+        </Link>
+      </div>
     </section>
   )
 }

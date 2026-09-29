@@ -52,6 +52,9 @@ de `lucide-react`. El contenedor de los módulos existentes les da estilos media
 utilidades de Tailwind sin cambiar sus formularios ni operaciones.
 La interfaz usa negro y grises neutros por defecto, incluidos formularios, tablas, menús y
 mensajes de estado. El esquema de color nativo del navegador también es oscuro.
+Todas las páginas usan encabezados fuera de las tarjetas y botones consistentes,
+incluidas las pantallas de acceso, registro y página no encontrada. Los componentes
+compartidos de presentación están en `src/shared/components/ui/`.
 
 1. En el backend: `go run .` (PostgreSQL y las migraciones deben estar preparados).
 2. En esta carpeta: `npm install` si faltan dependencias; luego `npm run dev`.
@@ -65,9 +68,11 @@ El proxy de Vite dirige `/api` a `http://127.0.0.1:8080`, elimina el prefijo y c
 - `/` dirige a `/login` sin sesión y a `/dashboard` con sesión. Al iniciar sesión se abre el dashboard.
 - `/dashboard`, `/customers`, `/products` y `/invoices` requieren sesión. Al cerrar sesión o expirar el token, se regresa al login.
 - El dashboard consulta los clientes y productos del catálogo y la primera página de facturas (hasta 20). Los indicadores de facturas y pendientes corresponden únicamente a esa página, no al total histórico. La actividad muestra los cinco registros más recientes dentro de esa consulta. Si falla la carga se muestra un error con opción de actualizar.
-- Clientes: crear, editar, listar por páginas y eliminar. Los códigos fiscales deben corresponder al cliente real.
+- Clientes: tabla paginada con identificación, contacto y acciones. «Agregar cliente» y editar abren un formulario modal. Los códigos fiscales deben corresponder al cliente real.
 - Productos: la página muestra la tabla y un botón «Agregar producto». Crear y editar abren una modal con precio sin impuestos y uno o varios impuestos. Al guardar se cierra y actualiza la lista; si falla, conserva el formulario y muestra el error. La modal permite cancelar o cerrar con Escape, mantiene el foco dentro y bloquea el cierre durante el guardado.
-- Facturas: seleccionar cliente, productos, cantidades, descuento, rango y pagos; crear y validar. Muestra número, CUFE, totales, enlace público y notificaciones devueltas por Factus.
+- Las tablas comparten encabezado, controles de actualización y paginación; cada catálogo tiene sus propias filas. Muestra nombre, código, precio e impuestos, con acciones accesibles de edición y eliminación. El título y el botón de alta quedan fuera de la tarjeta; en móvil, solo la tabla tiene desplazamiento horizontal.
+- Facturas: historial y un input de búsqueda por ID, que se ejecuta con Enter. El detalle se abre en su propia página (`/invoices/:id`), con número, CUFE, totales, enlace público y descargas.
+- Realizar venta (`/sales/new`): formulario para seleccionar cliente, productos, cantidades, descuento, rango y pagos, y generar la factura. Los envíos guardados se recuperan al volver a la página o recargar, conservando la misma referencia para reintentar.
 - Historial paginado y consulta por ID de factura local mediante los endpoints existentes de facturas.
 
 La sesión vive en `sessionStorage` de la pestaña, vence según el JWT y se elimina al cerrar sesión o recibir 401. Para las facturas se conserva el body enviado por usuario antes del POST; un error de red no descarta la referencia. “Consultar mismo envío” repite exactamente ese body, aprovechando la protección de duplicados del backend. Los estados `pending` y `unknown` no son éxito y requieren revisión en Factus; consultar el registro local no concilia automáticamente con Factus.

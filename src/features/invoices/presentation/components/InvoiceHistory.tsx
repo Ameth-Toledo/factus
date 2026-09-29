@@ -1,6 +1,10 @@
+import { ReceiptText } from 'lucide-react'
 import type { Session } from '../../../auth/domain/models/Session'
 import type { Invoice } from '../../domain/models/Invoice'
-import InvoiceDownloads from './InvoiceDownloads'
+import TableToolbar from '../../../../shared/components/ui/TableToolbar'
+import TablePagination from '../../../../shared/components/ui/TablePagination'
+import TableState from '../../../../shared/components/ui/TableState'
+import InvoiceTableRow from './InvoiceTableRow'
 import { useInvoiceHistoryViewModel } from '../viewmodel/useInvoiceHistoryViewModel'
 
 export default function InvoiceHistory({
@@ -12,108 +16,81 @@ export default function InvoiceHistory({
   onSelect: (invoice: Invoice) => void
   refreshKey: number
 }) {
-  const {
-    rows,
-    offset,
-    setOffset,
-    setRevision,
-    loading,
-    setLoading,
-    error,
-    labels,
-  } = useInvoiceHistoryViewModel({ session, refreshKey })
+  const { rows, offset, loading, error, refresh, previousPage, nextPage } =
+    useInvoiceHistoryViewModel({ session, refreshKey })
+
   return (
-    <section>
-      <h2>Historial de facturas</h2>
-      <button
-        type="button"
-        className="secondary"
-        disabled={loading}
-        onClick={() => {
-          setLoading(true)
-          setRevision((v) => v + 1)
-        }}
+    <section
+      aria-label="Historial de facturas"
+      className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950"
+    >
+      <TableToolbar
+        title="Historial de facturas"
+        icon={ReceiptText}
+        count={rows.length}
+        loading={loading}
+        onRefresh={refresh}
+      />
+      <div
+        className="overflow-x-auto"
+        tabIndex={0}
+        role="region"
+        aria-label="Tabla de facturas desplazable"
       >
-        Actualizar historial
-      </button>
-      {error && (
-        <p role="alert" className="error">
-          {error}
-        </p>
-      )}
-      {loading ? (
-        <p role="status">Cargando historial…</p>
-      ) : (
-        <>
-          <div className="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID / Fecha</th>
-                  <th>Número / Referencia</th>
-                  <th>Estado</th>
-                  <th>Total</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((invoice) => (
-                  <tr key={invoice.id}>
-                    <td>
-                      {invoice.id}
-                      <br />
-                      {new Date(invoice.created_at).toLocaleString('es')}
-                    </td>
-                    <td>
-                      {invoice.number || 'Sin número'}
-                      <br />
-                      <small>{invoice.reference_code}</small>
-                    </td>
-                    <td>{labels[invoice.status] || invoice.status}</td>
-                    <td>
-                      {invoice.factus_response?.data?.totals?.total || '—'}
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="secondary"
-                        onClick={() => onSelect(invoice)}
-                      >
-                        Ver detalle
-                      </button>
-                      <InvoiceDownloads invoice={invoice} session={session} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          {!rows.length && !error && <p>No hay facturas en esta página.</p>}
-        </>
-      )}
-      <div className="actions">
-        <button
-          className="secondary"
-          disabled={loading || offset === 0}
-          onClick={() => {
-            setLoading(true)
-            setOffset(offset - 20)
-          }}
-        >
-          Anterior
-        </button>
-        <span>Página {offset / 20 + 1}</span>
-        <button
-          className="secondary"
-          disabled={loading || rows.length < 20}
-          onClick={() => {
-            setLoading(true)
-            setOffset(offset + 20)
-          }}
-        >
-          Siguiente
-        </button>
+        <table className="w-full min-w-[780px] text-left text-sm">
+          <caption className="sr-only">
+            Facturas emitidas, fechas, estados, totales y descargas.
+          </caption>
+          <thead className="border-y border-neutral-800 bg-white/[0.015] text-[10px] font-medium tracking-widest text-neutral-500 uppercase">
+            <tr>
+              <th scope="col" className="py-3 pr-4 pl-6">
+                Factura
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Fecha
+              </th>
+              <th scope="col" className="px-5 py-3">
+                Estado
+              </th>
+              <th scope="col" className="px-5 py-3 text-right">
+                Total
+              </th>
+              <th scope="col" className="py-3 pr-6 pl-4 text-right">
+                Acciones
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading || !rows.length ? (
+              <TableState
+                columns={5}
+                loading={loading}
+                error={error}
+                title="No hay facturas en esta página"
+                description="Crea una factura para comenzar a registrar tus ventas."
+                icon={ReceiptText}
+              />
+            ) : (
+              rows.map((invoice) => (
+                <InvoiceTableRow
+                  key={invoice.id}
+                  invoice={invoice}
+                  session={session}
+                  onSelect={onSelect}
+                />
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
+      <TablePagination
+        offset={offset}
+        count={rows.length}
+        loading={loading}
+        busy={false}
+        onPrevious={previousPage}
+        onNext={nextPage}
+      />
     </section>
   )
 }

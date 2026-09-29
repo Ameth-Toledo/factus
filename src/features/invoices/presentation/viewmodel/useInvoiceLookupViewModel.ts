@@ -20,9 +20,12 @@ export function useInvoiceLookupViewModel(
     setLookupError('')
     setFound(null)
     try {
-      setFound(await repository.find(session, lookup))
+      const invoice = await repository.find(session, lookup)
+      setFound(invoice)
+      return invoice
     } catch (e) {
       setLookupError(errorMessage(e))
+      return null
     } finally {
       setLookupBusy(false)
     }

@@ -1,4 +1,10 @@
-import { LayoutDashboard, UsersRound, Package, ReceiptText } from 'lucide-react'
+import {
+  LayoutDashboard,
+  UsersRound,
+  Package,
+  ReceiptText,
+  ShoppingCart,
+} from 'lucide-react'
 
 export const navigation = [
   {
@@ -18,6 +24,12 @@ export const navigation = [
     label: 'Productos',
     title: 'Productos y servicios',
     icon: Package,
+  },
+  {
+    path: '/sales/new',
+    label: 'Realizar venta',
+    title: 'Realizar venta',
+    icon: ShoppingCart,
   },
   {
     path: '/invoices',

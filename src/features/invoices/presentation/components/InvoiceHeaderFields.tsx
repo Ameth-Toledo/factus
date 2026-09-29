@@ -1,4 +1,4 @@
-import type { useInvoicesViewModel } from '../viewmodel/useInvoicesViewModel'
+import type { useInvoiceCreationViewModel } from '../viewmodel/useInvoiceCreationViewModel'
 
 export default function InvoiceHeaderFields({
   draft,
@@ -6,21 +6,12 @@ export default function InvoiceHeaderFields({
   customers,
   ranges,
 }: Pick<
-  ReturnType<typeof useInvoicesViewModel>,
+  ReturnType<typeof useInvoiceCreationViewModel>,
   'draft' | 'patch' | 'customers' | 'ranges'
 >) {
   return (
     <>
-      <div className="grid">
-        <label>
-          Referencia única
-          <input
-            required
-            maxLength={100}
-            value={draft.reference_code}
-            onChange={(e) => patch('reference_code', e.target.value)}
-          />
-        </label>
+      <div className="grid gap-5 sm:grid-cols-2">
         <label>
           Cliente
           <select
@@ -54,13 +45,22 @@ export default function InvoiceHeaderFields({
           </select>
         </label>
         <label>
-          Observación
+          Observación (opcional)
           <input
+            placeholder="Agrega una nota para esta venta"
             maxLength={250}
             value={draft.observation}
             onChange={(e) => patch('observation', e.target.value)}
           />
         </label>
+        <div className="flex min-w-0 flex-col gap-2 border-t border-neutral-800 pt-4 sm:col-span-2">
+          <span className="text-xs font-medium text-neutral-500">
+            Referencia única
+          </span>
+          <span className="font-mono text-xs break-all text-neutral-400">
+            {draft.reference_code}
+          </span>
+        </div>
       </div>
     </>
   )

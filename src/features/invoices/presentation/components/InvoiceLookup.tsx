@@ -1,4 +1,5 @@
-import type { useInvoicesViewModel } from '../viewmodel/useInvoicesViewModel'
+import { Search, LoaderCircle } from 'lucide-react'
+import type { useInvoiceLookupViewModel } from '../viewmodel/useInvoiceLookupViewModel'
 
 export default function InvoiceLookup({
   consult,
@@ -7,33 +8,52 @@ export default function InvoiceLookup({
   lookupBusy,
   lookupError,
 }: Pick<
-  ReturnType<typeof useInvoicesViewModel>,
+  ReturnType<typeof useInvoiceLookupViewModel>,
   'consult' | 'lookup' | 'setLookup' | 'lookupBusy' | 'lookupError'
 >) {
   return (
-    <>
-      <h2 id="invoice-detail">Consultar factura guardada</h2>
-      <form onSubmit={consult}>
-        <label>
-          ID de factura
-          <input
-            required
-            type="number"
-            min="1"
-            step="1"
-            value={lookup}
-            onChange={(e) => setLookup(e.target.value)}
+    <form
+      onSubmit={consult}
+      role="search"
+      aria-label="Buscar factura"
+      className="w-full sm:ml-auto sm:w-96"
+    >
+      <div className="relative">
+        {lookupBusy ? (
+          <LoaderCircle
+            className="pointer-events-none absolute top-3.5 left-4 size-4 animate-spin text-neutral-500"
+            aria-hidden="true"
           />
-        </label>
-        <button disabled={lookupBusy}>
-          {lookupBusy ? 'Consultando…' : 'Consultar por ID'}
-        </button>
-      </form>
+        ) : (
+          <Search
+            className="pointer-events-none absolute top-3.5 left-4 size-4 text-neutral-500"
+            aria-hidden="true"
+          />
+        )}
+        <input
+          aria-label="Buscar factura por ID"
+          aria-describedby={lookupError ? 'invoice-search-error' : undefined}
+          aria-busy={lookupBusy}
+          required
+          type="number"
+          min="1"
+          step="1"
+          value={lookup}
+          readOnly={lookupBusy}
+          onChange={(event) => setLookup(event.target.value)}
+          placeholder="Buscar factura por ID…"
+          className="w-full rounded-xl border border-neutral-800 bg-neutral-950 py-3 pr-4 pl-11 text-sm text-neutral-100 outline-none focus:border-neutral-500"
+        />
+      </div>
       {lookupError && (
-        <p role="alert" className="error">
+        <p
+          id="invoice-search-error"
+          role="alert"
+          className="mt-2 text-sm text-rose-300"
+        >
           {lookupError}
         </p>
       )}
-    </>
+    </form>
   )
 }

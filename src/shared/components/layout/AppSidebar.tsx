@@ -1,7 +1,5 @@
-import { ArrowUpRight, LogOut } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { LogOut } from 'lucide-react'
 import type { Session } from '../../../features/auth/domain/models/Session'
-import Brand from '../ui/Brand'
 import SidebarNavigation from './SidebarNavigation'
 
 export default function AppSidebar({
@@ -13,31 +11,27 @@ export default function AppSidebar({
 }) {
   return (
     <aside className="fixed inset-y-0 left-0 hidden w-64 flex-col border-r border-neutral-800 bg-neutral-950 p-6 lg:flex">
-      <Link
-        to="/dashboard"
-        aria-label="Factus, ir al inicio"
-        className="mb-12 w-fit text-neutral-50"
+      <a
+        href="https://www.amethdev.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visitar el sitio web de Ameth Toledo"
+        className="mb-12 flex w-fit items-center gap-0 text-neutral-50"
       >
-        <Brand />
-      </Link>
+        <img
+          src="/assets/logo.png"
+          alt=""
+          className="size-15 shrink-0 object-contain"
+        />
+        <span className="text-lg font-semibold tracking-tight">
+          Ameth Toledo
+        </span>
+      </a>
       <p className="mb-4 px-4 text-[10px] font-bold tracking-[0.2em] text-neutral-400">
         ESPACIO DE TRABAJO
       </p>
       <SidebarNavigation />
       <div className="mt-auto space-y-6 pt-10">
-        <div className="rounded-2xl bg-black p-5 text-white">
-          <p className="text-sm font-semibold">Tu negocio, organizado.</p>
-          <p className="mt-2 text-xs leading-5 text-neutral-400">
-            Clientes, productos y facturas en un mismo lugar.
-          </p>
-          <Link
-            to="/invoices"
-            className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-neutral-300 hover:text-white"
-          >
-            Crear una factura{' '}
-            <ArrowUpRight className="size-4" aria-hidden="true" />
-          </Link>
-        </div>
         <div className="border-t border-neutral-800 pt-5">
           <div className="mb-4 flex items-center gap-3">
             <span

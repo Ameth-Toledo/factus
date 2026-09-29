@@ -1,8 +1,9 @@
-import { ListFilter, RefreshCw } from 'lucide-react'
+import { Package } from 'lucide-react'
 import type { useProductsViewModel } from '../viewmodel/useProductsViewModel'
 import ProductTableRow from './ProductTableRow'
 import ProductTableState from './ProductTableState'
-import ProductTablePagination from './ProductTablePagination'
+import TablePagination from '../../../../shared/components/ui/TablePagination'
+import TableToolbar from '../../../../shared/components/ui/TableToolbar'
 
 export default function ProductsTable({
   products,
@@ -35,32 +36,14 @@ export default function ProductsTable({
       aria-label="Catálogo de productos"
       className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950"
     >
-      <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-5">
-        <div className="flex items-center gap-3">
-          <ListFilter className="size-4 text-neutral-500" aria-hidden="true" />
-          <h2 className="text-sm font-semibold text-neutral-200">
-            Catálogo de productos
-          </h2>
-          <span
-            className="rounded-md bg-neutral-800/80 px-2 py-0.5 text-[11px] font-medium text-neutral-400"
-            aria-label="Productos en esta página"
-          >
-            {loading ? '…' : products.length}
-          </span>
-        </div>
-        <button
-          type="button"
-          onClick={refresh}
-          disabled={busy || loading}
-          className="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-neutral-400 transition hover:bg-neutral-900 hover:text-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          <RefreshCw
-            className={`size-3.5 ${loading ? 'animate-spin' : ''}`}
-            aria-hidden="true"
-          />
-          Actualizar
-        </button>
-      </div>
+      <TableToolbar
+        title="Catálogo de productos"
+        icon={Package}
+        count={products.length}
+        loading={loading}
+        busy={busy}
+        onRefresh={refresh}
+      />
       <div
         className="overflow-x-auto"
         tabIndex={0}
@@ -113,7 +96,7 @@ export default function ProductsTable({
           </tbody>
         </table>
       </div>
-      <ProductTablePagination
+      <TablePagination
         offset={offset}
         count={products.length}
         loading={loading}

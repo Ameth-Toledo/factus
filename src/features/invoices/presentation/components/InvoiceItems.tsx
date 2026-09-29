@@ -1,18 +1,22 @@
-import type { useInvoicesViewModel } from '../viewmodel/useInvoicesViewModel'
+import { Plus, Trash2 } from 'lucide-react'
+import type { useInvoiceCreationViewModel } from '../viewmodel/useInvoiceCreationViewModel'
 
 export default function InvoiceItems({
   draft,
   patch,
   products,
 }: Pick<
-  ReturnType<typeof useInvoicesViewModel>,
+  ReturnType<typeof useInvoiceCreationViewModel>,
   'draft' | 'patch' | 'products'
 >) {
   return (
     <>
-      <h3>Productos</h3>
+      <h2 className="mb-5 text-sm font-semibold text-neutral-100">Productos</h2>
       {draft.items.map((item, index) => (
-        <div className="row" key={index}>
+        <div
+          className="mb-4 grid items-end gap-3 rounded-xl border border-neutral-800/70 bg-black/30 p-4 sm:grid-cols-[minmax(0,1fr)_90px_100px_36px]"
+          key={index}
+        >
           <label>
             Producto
             <select
@@ -71,7 +75,7 @@ export default function InvoiceItems({
           </label>
           <button
             type="button"
-            className="secondary"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-700 px-3 py-2.5 text-xs font-medium text-neutral-300 hover:bg-neutral-800"
             disabled={draft.items.length === 1}
             onClick={() =>
               patch(
@@ -80,13 +84,14 @@ export default function InvoiceItems({
               )
             }
           >
-            Quitar producto
+            <Trash2 className="size-4 shrink-0" aria-hidden="true" />
+            <span className="sr-only">Quitar producto</span>
           </button>
         </div>
       ))}
       <button
         type="button"
-        className="secondary"
+        className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-700 px-3 py-2.5 text-xs font-medium text-neutral-300 hover:bg-neutral-800"
         disabled={draft.items.length >= 100}
         onClick={() =>
           patch('items', [
@@ -95,6 +100,7 @@ export default function InvoiceItems({
           ])
         }
       >
+        <Plus className="size-4" aria-hidden="true" />
         Agregar producto
       </button>
     </>

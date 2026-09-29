@@ -12,7 +12,10 @@ export default function AuthForm({
   'register' | 'busy' | 'submit' | 'toggleMode'
 >) {
   return (
-    <form onSubmit={submit}>
+    <form
+      onSubmit={submit}
+      className="rounded-2xl border border-neutral-800 bg-neutral-950 p-5 sm:p-6"
+    >
       <fieldset disabled={busy} className="space-y-5">
         {register && (
           <>
@@ -61,7 +64,7 @@ export default function AuthForm({
             register ? 'Mínimo 8 caracteres' : 'Ingresa tu contraseña'
           }
         />
-        <button className="mt-2 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-neutral-700 px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-neutral-600/10 transition hover:bg-neutral-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-500 disabled:cursor-wait disabled:opacity-60">
+        <button className="mt-2 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-neutral-100 px-5 py-3.5 text-sm font-semibold text-black transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-500 disabled:cursor-wait disabled:opacity-60">
           {busy ? (
             <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
           ) : null}

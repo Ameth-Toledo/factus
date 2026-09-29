@@ -21,7 +21,7 @@ export default function FormField({
         )}
         <input
           {...input}
-          className={`w-full rounded-xl border border-neutral-700 bg-neutral-950 py-3 pr-4 text-sm text-neutral-50 transition outline-none placeholder:text-neutral-500 focus:border-neutral-500 focus:ring-4 focus:ring-neutral-500/20 disabled:opacity-60 ${Icon ? 'pl-10' : 'pl-4'}`}
+          className={`w-full rounded-xl border border-neutral-800 bg-black py-3 pr-4 text-sm text-neutral-50 transition outline-none placeholder:text-neutral-500 focus:border-neutral-500 focus:ring-4 focus:ring-neutral-500/20 disabled:opacity-60 ${Icon ? 'pl-10' : 'pl-4'}`}
         />
       </span>
     </label>

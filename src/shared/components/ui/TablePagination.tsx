@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-export default function ProductTablePagination({
+export default function TablePagination({
   offset,
   count,
   loading,

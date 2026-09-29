@@ -1,7 +1,7 @@
 import { ArrowRight, ReceiptText } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { Invoice } from '../../../invoices/domain/models/Invoice'
-import InvoiceStatusBadge from './InvoiceStatusBadge'
+import InvoiceStatusBadge from '../../../invoices/presentation/components/InvoiceStatusBadge'
 
 export default function RecentInvoices({
   invoices,
@@ -64,9 +64,14 @@ export default function RecentInvoices({
           </Link>
         </div>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-black/60 text-[10px] font-semibold tracking-wider text-neutral-400 uppercase">
+        <div
+          className="overflow-x-auto"
+          tabIndex={0}
+          role="region"
+          aria-label="Actividad de facturación desplazable"
+        >
+          <table className="w-full min-w-[540px] text-left text-sm">
+            <thead className="border-y border-neutral-800 bg-white/[0.015] text-[10px] font-medium tracking-widest text-neutral-500 uppercase">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   Factura
@@ -84,8 +89,11 @@ export default function RecentInvoices({
             </thead>
             <tbody className="divide-y divide-neutral-800">
               {invoices.map((invoice) => (
-                <tr key={invoice.id}>
-                  <td className="max-w-52 px-6 py-4">
+                <tr
+                  key={invoice.id}
+                  className="transition-colors hover:bg-white/[0.025]"
+                >
+                  <td className="max-w-52 px-6 py-5">
                     <p className="font-medium text-neutral-100">
                       {invoice.number || `Factura #${invoice.id}`}
                     </p>
@@ -96,15 +104,15 @@ export default function RecentInvoices({
                       {invoice.reference_code}
                     </p>
                   </td>
-                  <td className="px-4 py-4 text-xs whitespace-nowrap text-neutral-400">
+                  <td className="px-4 py-5 text-xs whitespace-nowrap text-neutral-400">
                     {invoice.created_at
                       ? new Date(invoice.created_at).toLocaleDateString('es')
                       : '—'}
                   </td>
-                  <td className="px-4 py-4">
+                  <td className="px-4 py-5">
                     <InvoiceStatusBadge status={invoice.status} />
                   </td>
-                  <td className="px-6 py-4 text-right text-sm font-medium whitespace-nowrap text-neutral-200">
+                  <td className="px-6 py-5 text-right text-sm font-medium whitespace-nowrap text-neutral-200">
                     {invoice.factus_response?.data?.totals?.total || '—'}
                   </td>
                 </tr>
