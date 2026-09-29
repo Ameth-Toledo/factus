@@ -12,7 +12,7 @@ export async function api<T>(
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), 95000)
   try {
-    const response = await fetch(`/api${path}`, {
+    const response = await fetch(`${path}`, {
       method,
       headers: {
         Accept: 'application/json',
